@@ -12,7 +12,9 @@ class AuctionController extends Controller
      */
     public function index()
     {
-        //
+        return view('auction.list', [
+            'data' => Auction::all()
+        ]);
     }
 
     /**
@@ -20,7 +22,6 @@ class AuctionController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -44,7 +45,9 @@ class AuctionController extends Controller
      */
     public function edit(Auction $auction)
     {
-        //
+        return view('auction.edit', [
+            'data' => $auction
+        ]);
     }
 
     /**
@@ -52,7 +55,9 @@ class AuctionController extends Controller
      */
     public function update(Request $request, Auction $auction)
     {
-        //
+        $data = $request->except("_token");
+        $auction->update($data);
+        return redirect()->route('auctions.index')->with('success', 'Success edit selected auction');
     }
 
     /**

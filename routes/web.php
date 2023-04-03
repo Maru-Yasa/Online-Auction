@@ -24,6 +24,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'home'], function(){
     Route::group(['middleware' => 'staff'], function(){
         Route::get('/', 'App\Http\Controllers\HomeController@view')->name('home');
         Route::resource('items', 'App\Http\Controllers\ItemController');
+        Route::resource('auctions', 'App\Http\Controllers\AuctionController');
     });
     Route::get('/profile', 'App\Http\Controllers\ProfileController@view')->name('profile');
 });
