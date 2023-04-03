@@ -127,9 +127,13 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         $auction = Auction::all()->where('item_id', $item->id)->first();
-        unlink(base_path('/public/img/items/'.$item->image));
-        $auction->delete();
-        $item->delete();
-        return redirect()->route('items.index')->with('success', 'Success delete selected item');
+        if ($auction->status == 'closed') {
+            unlink(base_path('/public/img/items/'.$item->image));
+            $auction->delete();
+            $item->delete();
+            return redirect()->route('items.index')->with('success', 'Success delete selected item');            
+        } else {
+            return redirect()->route('items.index')->with('error', "You can't delete an auction while opened in public");
+        } 
     }
 }

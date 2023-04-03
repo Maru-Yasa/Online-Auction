@@ -34,6 +34,7 @@
                             <td>Name</td>
                             <td>Start Price</td>
                             <td>Image</td>
+                            <td>Status</td>
                             <td>Action</td>
                         </tr>
                     </thead>
@@ -47,6 +48,11 @@
                                 <td class="">
                                     <img class="img-fluid m-3" src="/img/items/{{ $item->image }}" alt="">
                                 </td>
+                                <td class="text-center">@if ($item->auction->status == 'closed')
+                                    <i class="fa fa-circle text-danger"></i>
+                                @else
+                                    <i class="fa fa-circle text-success"></i>
+                                @endif</td>
                                 <td>
                                     <div class="d-flex justify-content-center">
                                         <a href="{{ route('items.edit', $item->id) }}" class="btn btn-primary btn-round mr-2"><i class="fas fa-edit"></i></a>

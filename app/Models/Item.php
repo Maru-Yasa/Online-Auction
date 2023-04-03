@@ -9,4 +9,10 @@ class Item extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function auction()
+    {
+        return $this->hasOne(Auction::class);
+    }
+
 }
