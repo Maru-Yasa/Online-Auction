@@ -18,10 +18,14 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'home'], function(){
-    Route::get('/', 'App\Http\Controllers\HomeController@view')->name('home');
+    Route::group(['middleware' => 'admin'], function(){
+        Route::resource('users', 'App\Http\Controllers\UserController');
+    });
+    Route::group(['middleware' => 'staff'], function(){
+        Route::get('/', 'App\Http\Controllers\HomeController@view')->name('home');
+        Route::resource('items', 'App\Http\Controllers\ItemController');
+    });
     Route::get('/profile', 'App\Http\Controllers\ProfileController@view')->name('profile');
-    Route::resource('users', 'App\Http\Controllers\UserController');
-    Route::resource('items', 'App\Http\Controllers\ItemController');
 });
 
 // Route::get('/login', 'App\Http\Controllers\AuthController@login')->name('auth.login');
