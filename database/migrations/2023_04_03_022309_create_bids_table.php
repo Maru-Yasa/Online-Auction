@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bids', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('auction_id')->constrained('auctions');
+            $table->foreignId('auction_id')->constrained('auctions')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->constrained('users');
             $table->bigInteger('offer');
             $table->timestamps();

@@ -263,30 +263,31 @@
 								</a>
 							</li>
 						@endif
+						@if (Auth::user()->role === 'admin' || Auth::user()->role === 'staff')
+						<li class="nav-item @if(Route::is('items.index')) active @endif">
+							<a href="{{ route('items.index') }}">
+								<i class="fas fa-boxes"></i>
+								<p>Items</p>
+							</a>
+						</li>
+
+						{{-- <li class="nav-item @if(Route::is('auctions.index')) active @endif">
+							<a href="{{ route('auctions.index') }}">
+								<i class="fas fa-table"></i>
+								<p>Auctions</p>
+							</a>
+						</li>
+
+						<li class="nav-item @if(Route::is('bids.index')) active @endif">
+							<a href="{{ route('bids.index') }}">
+								<i class="fas fa-gavel"></i>
+								<p>Bids</p>
+							</a>
+						</li> --}}
+					@endif
 						{{-- 
 
-						@if (Auth::user()->role === 'admin' || Auth::user()->role === 'staff')
-							<li class="nav-item @if(Route::is('items.index')) active @endif">
-								<a href="{{ route('items.index') }}">
-									<i class="fas fa-boxes"></i>
-									<p>Items</p>
-								</a>
-							</li>
-
-							<li class="nav-item @if(Route::is('auctions.index')) active @endif">
-								<a href="{{ route('auctions.index') }}">
-									<i class="fas fa-table"></i>
-									<p>Auctions</p>
-								</a>
-							</li>
-
-							<li class="nav-item @if(Route::is('bids.index')) active @endif">
-								<a href="{{ route('bids.index') }}">
-									<i class="fas fa-gavel"></i>
-									<p>Bids</p>
-								</a>
-							</li>
-						@endif --}}
+						 --}}
 
 
 						{{-- <li class="nav-section">

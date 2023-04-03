@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('auctions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_id')->constrained('items');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('item_id')->constrained('items')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('best_offer');
             $table->enum('status', ['open', 'closed']);
             $table->timestamps();
