@@ -67,4 +67,12 @@ class AuctionController extends Controller
     {
         //
     }
+
+    public function detail($id)
+    {
+        return view('auction.detail', [
+            'data' => Auction::all()->where('id', $id)->first()
+        ]);
+    }
+
 }

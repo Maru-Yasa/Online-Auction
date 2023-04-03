@@ -50,7 +50,7 @@
                                 @endif</td>
                                 <td>
                                     <div class="d-flex justify-content-center">
-                                        <a href="{{ route('auctions.edit', $auction->id) }}" class="btn btn-secondary btn-round mr-2"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route('auction.detail', $auction->id) }}" class="btn btn-secondary btn-round mr-2"><i class="fas fa-eye"></i></a>
                                         <a href="{{ route('auctions.edit', $auction->id) }}" class="btn btn-success btn-round mr-2"><i class="fas fa-trophy"></i></a>
                                         <a href="{{ route('auctions.edit', $auction->id) }}" class="btn btn-primary btn-round mr-2"><i class="fas fa-edit"></i></a>
                                     </div>

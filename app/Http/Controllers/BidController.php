@@ -62,4 +62,13 @@ class BidController extends Controller
     {
         //
     }
+
+    public function best_bid(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Bid::all()->where('auction_id', $request->query('auction_id'));
+            return response()->json($data);
+        }
+    }
+
 }
