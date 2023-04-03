@@ -247,9 +247,6 @@
 								<p>Profile</p>
 							</a>
 						</li>
-						
-						{{-- 
-
 						@if (Auth::user()->role === 'admin' || Auth::user()->role === 'staff')
 							<li class="nav-section">
 								<span class="sidebar-mini-icon">
@@ -266,6 +263,8 @@
 								</a>
 							</li>
 						@endif
+						{{-- 
+
 						@if (Auth::user()->role === 'admin' || Auth::user()->role === 'staff')
 							<li class="nav-item @if(Route::is('items.index')) active @endif">
 								<a href="{{ route('items.index') }}">

@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth', 'prefix' => 'home'], function(){
     Route::get('/', 'App\Http\Controllers\HomeController@view')->name('home');
     Route::get('/profile', 'App\Http\Controllers\ProfileController@view')->name('profile');
+    Route::resource('users', 'App\Http\Controllers\UserController');
 });
 
 // Route::get('/login', 'App\Http\Controllers\AuthController@login')->name('auth.login');
