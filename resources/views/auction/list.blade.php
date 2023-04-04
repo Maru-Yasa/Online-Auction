@@ -45,7 +45,11 @@
                                 <td>{{ $auction->item->name }}</td>
                                 <td>@currency($auction->item->start_price)</td>
                                 <td>@currency($auction->best_offer)</td>
-                                <td>{{ $auction->bids->where('offer', $auction->best_offer)->first()->user->username }}</td>
+                                <td>@if ($auction->bids->count() !== 0)
+                                    {{ $auction->bids->where('offer', $auction->best_offer)->first()->user->username }}
+                                @else
+                                    Unkown
+                                @endif</td>
                                 <td>{{ $auction->bids->count() }}</td>
                                 <td class="text-center">@if ($auction->status == 'closed')
                                     <i class="fa fa-circle text-danger"></i>
@@ -53,12 +57,15 @@
                                     <i class="fa fa-circle text-success"></i>
                                 @else
                                     <i class="fa fa-trophy text-warning"></i>
-                                @endif</td>
+                                @endif
+                                </td>
                                 <td>
                                     <div class="d-flex justify-content-center">
                                         @if ($auction->status != 'complete')
                                         <a href="{{ route('auctions.detail', $auction->id) }}" class="btn btn-secondary btn-round mr-2"><i class="fas fa-eye"></i></a>
-                                        <a href="{{ route('auctions.confirm_winner', $auction->id) }}" class="btn btn-success btn-round mr-2"><i class="fas fa-trophy"></i></a>
+                                        @if ($auction->bids->count() !== 0)
+                                            <a href="{{ route('auctions.confirm_winner', $auction->id) }}" class="btn btn-success btn-round mr-2"><i class="fas fa-trophy"></i></a>                                            
+                                        @endif
                                         <a href="{{ route('auctions.edit', $auction->id) }}" class="btn btn-primary btn-round mr-2"><i class="fas fa-edit"></i></a>
                                         @else
                                         <a href="{{ route('auctions.detail', $auction->id) }}" class="btn btn-secondary btn-round mr-2"><i class="fas fa-eye"></i></a>

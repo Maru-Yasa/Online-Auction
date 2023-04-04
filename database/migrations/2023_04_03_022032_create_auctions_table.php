@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('best_offer');
             $table->enum('status', ['open', 'closed', 'complete']);
+            $table->string('winner')->nullable();
             $table->timestamps();
         });
     }

@@ -50,9 +50,12 @@
                                 </td>
                                 <td class="text-center">@if ($item->auction->status == 'closed')
                                     <i class="fa fa-circle text-danger"></i>
-                                @else
+                                @elseif ($item->auction->status == 'open')
                                     <i class="fa fa-circle text-success"></i>
-                                @endif</td>
+                                @else
+                                    <i class="fa fa-trophy text-warning"></i>
+                                @endif
+                                </td>
                                 <td>
                                     <div class="d-flex justify-content-center">
                                         <a href="{{ route('items.edit', $item->id) }}" class="btn btn-primary btn-round mr-2"><i class="fas fa-edit"></i></a>

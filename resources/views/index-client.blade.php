@@ -88,10 +88,9 @@
                 <div class="card">
                     <h2 class="mx-3 my-2"><i class="fa fa-trophy text-warning"></i> Winner History</h2>
                     <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+                        @foreach ($win_history as $auction)
+                            <a href="{{ route('auctions.detail', $auction->id) }}" class="list-group-item list-group-item-action">{{ $loop->iteration }}. {{ $auction->item->name }}</a>
+                        @endforeach
                     </div>
                 </div>
             </div>

@@ -118,7 +118,8 @@ class AuctionController extends Controller
             $auction = Auction::all()->where('id', $auction_id)->firstOrFail();
             $lastBid = Bid::all()->where('auction_id', $auction_id)->where('offer', $auction->best_offer)->first();
             $auction->update([
-                'status' => 'complete'
+                'status' => 'complete',
+                'winner' => $lastBid->user->id
             ]);
             return redirect()->route('auctions.index')->with('success', 'Success end the auction');
         } catch (ItemNotFoundException $th) {
