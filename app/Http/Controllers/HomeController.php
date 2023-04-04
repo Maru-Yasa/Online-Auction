@@ -13,9 +13,13 @@ class HomeController extends Controller
     public function view()
     {
         if (auth()->user()->role === 'client') {
-            return view('profile', $data=[
+            $bids_history = Bid::orderBy('created_at', 'DESC')->where('user_id', auth()->user()->id)->get();
+            return view('index-client', $data=[
                 'user' => auth()->user(),
-                'message' => 'test'
+                'message' => 'test',
+                'total_bid' => Bid::all()->where('user_id', auth()->user()->id)->count(),
+                'spent' => Bid::all()->where('user_id', auth()->user()->id)->sum('offer'),
+                'bids_history' => $bids_history
             ]);
         }
         return view('index', $data=[
