@@ -31,6 +31,8 @@
                             <td>Name</td>
                             <td>Start Price</td>
                             <td>Best Offer</td>
+                            <td>Best Offer By</td>
+                            <td>Bids Count</td>
                             <td class="text-center">Status</td>
                             <td class="text-center">Action</td>
                         </tr>
@@ -43,6 +45,8 @@
                                 <td>{{ $auction->item->name }}</td>
                                 <td>@currency($auction->item->start_price)</td>
                                 <td>@currency($auction->best_offer)</td>
+                                <td>{{ $auction->bids->where('offer', $auction->best_offer)->first()->user->username }}</td>
+                                <td>{{ $auction->bids->count() }}</td>
                                 <td class="text-center">@if ($auction->status == 'closed')
                                     <i class="fa fa-circle text-danger"></i>
                                 @else

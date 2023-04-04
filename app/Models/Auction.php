@@ -20,4 +20,9 @@ class Auction extends Model
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
+    public function bids()
+    {
+        return $this->hasMany(Bid::class, 'auction_id', 'id');
+    }
+
 }
