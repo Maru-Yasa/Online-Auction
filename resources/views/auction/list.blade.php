@@ -49,14 +49,21 @@
                                 <td>{{ $auction->bids->count() }}</td>
                                 <td class="text-center">@if ($auction->status == 'closed')
                                     <i class="fa fa-circle text-danger"></i>
-                                @else
+                                @elseif ($auction->status == 'open')
                                     <i class="fa fa-circle text-success"></i>
+                                @else
+                                    <i class="fa fa-trophy text-warning"></i>
                                 @endif</td>
                                 <td>
                                     <div class="d-flex justify-content-center">
-                                        <a href="{{ route('auction.detail', $auction->id) }}" class="btn btn-secondary btn-round mr-2"><i class="fas fa-eye"></i></a>
-                                        <a href="{{ route('auctions.edit', $auction->id) }}" class="btn btn-success btn-round mr-2"><i class="fas fa-trophy"></i></a>
+                                        @if ($auction->status != 'complete')
+                                        <a href="{{ route('auctions.detail', $auction->id) }}" class="btn btn-secondary btn-round mr-2"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route('auctions.confirm_winner', $auction->id) }}" class="btn btn-success btn-round mr-2"><i class="fas fa-trophy"></i></a>
                                         <a href="{{ route('auctions.edit', $auction->id) }}" class="btn btn-primary btn-round mr-2"><i class="fas fa-edit"></i></a>
+                                        @else
+                                        <a href="{{ route('auctions.detail', $auction->id) }}" class="btn btn-secondary btn-round mr-2"><i class="fas fa-eye"></i></a>
+                                        @endif
+
                                     </div>
                                 </td>
                             </tr>

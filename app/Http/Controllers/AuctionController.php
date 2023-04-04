@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Auction;
+use App\Models\Bid;
 use Illuminate\Http\Request;
+use Illuminate\Support\ItemNotFoundException;
 
 class AuctionController extends Controller
 {
@@ -73,9 +75,55 @@ class AuctionController extends Controller
         if (!auth()->user()) {
             return redirect('/login');
         }
+
+        $auction = Auction::all()->where('id', $id)->first();
+
+        if ($auction->status == 'complete') {
+            try {            
+                $auction = Auction::all()->where('id', $id)->firstOrFail();
+                $lastBid = Bid::all()->where('auction_id', $id)->where('offer', $auction->best_offer)->first();
+                return view('winner-note', [
+                    'winner' => $lastBid->user,
+                    'auction' => $auction,
+                    'last_bid' => $lastBid
+                ]);  
+            } catch (ItemNotFoundException $th) {
+                return response($th->getMessage(), 404);
+            }
+        }
+
         return view('auction.detail', [
-            'data' => Auction::all()->where('id', $id)->first()
+            'data' => $auction
         ]);
+    }
+
+    public function confirm_winner($auction_id)
+    {
+        try {            
+            $auction = Auction::all()->where('id', $auction_id)->firstOrFail();
+            $lastBid = Bid::all()->where('auction_id', $auction_id)->where('offer', $auction->best_offer)->first();
+            return view('winner-note', [
+                'winner' => $lastBid->user,
+                'auction' => $auction,
+                'last_bid' => $lastBid
+            ]);  
+        } catch (ItemNotFoundException $th) {
+            return response($th->getMessage(), 404);
+        }
+    }
+
+    public function confirm_winner_post($auction_id)
+    {
+        try {            
+            $auction = Auction::all()->where('id', $auction_id)->firstOrFail();
+            $lastBid = Bid::all()->where('auction_id', $auction_id)->where('offer', $auction->best_offer)->first();
+            $auction->update([
+                'status' => 'complete'
+            ]);
+            return redirect()->route('auctions.index')->with('success', 'Success end the auction');
+        } catch (ItemNotFoundException $th) {
+            return response($th->getMessage(), 404);
+        }
     }
 
 }
