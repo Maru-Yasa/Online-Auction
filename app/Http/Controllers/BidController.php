@@ -15,7 +15,9 @@ class BidController extends Controller
      */
     public function index()
     {
-        //
+        return view('bids.list', [
+            'data' => Bid::orderBy('created_at', 'DESC')->get()
+        ]);
     }
 
     /**
@@ -131,7 +133,7 @@ class BidController extends Controller
                         //     'message' => 'debug',
                         //     'debug' => $auction->best_offer
                         // ]);
-                        
+
                         $auction->update([
                             'best_offer' => $newBid->offer,
                         ]);

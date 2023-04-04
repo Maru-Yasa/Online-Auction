@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'home'], function(){
         Route::get('/', 'App\Http\Controllers\HomeController@view')->name('home');
         Route::resource('items', 'App\Http\Controllers\ItemController');
         Route::resource('auctions', 'App\Http\Controllers\AuctionController');
+        Route::resource('bids', 'App\Http\Controllers\BidController');
     });
     
     Route::get('/profile', 'App\Http\Controllers\ProfileController@view')->name('profile');
