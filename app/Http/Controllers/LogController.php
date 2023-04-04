@@ -13,7 +13,7 @@ class LogController extends Controller
     public function index()
     {
         return view('logs.list', [
-            'data' => Log::all()
+            'data' => Log::orderBy('created_at', 'DESC')->get()
         ]);
     }
 
