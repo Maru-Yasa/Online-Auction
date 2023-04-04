@@ -27,9 +27,14 @@ Route::group(['middleware' => 'auth', 'prefix' => 'home'], function(){
         Route::resource('items', 'App\Http\Controllers\ItemController');
         Route::resource('auctions', 'App\Http\Controllers\AuctionController');
     });
+
     Route::get('/profile', 'App\Http\Controllers\ProfileController@view')->name('profile');
 
     Route::get('/bestBidAjax', 'App\Http\Controllers\BidController@best_bid')->name('best_bid');
+});
+
+Route::group(['middleware' => 'client'], function(){
+    Route::post('/place_bid', 'App\Http\Controllers\BidController@place_bid')->name('place_bid');
 });
 
 // Route::get('/login', 'App\Http\Controllers\AuthController@login')->name('auth.login');

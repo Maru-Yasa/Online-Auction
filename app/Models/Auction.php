@@ -15,4 +15,9 @@ class Auction extends Model
         return $this->hasOne(Item::class, 'id', 'item_id');
     }
 
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
 }
