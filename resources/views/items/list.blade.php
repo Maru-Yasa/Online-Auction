@@ -44,7 +44,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->start_price }}</td>
+                                <td>@currency($item->start_price)</td>
                                 <td class="">
                                     <img class="img-fluid m-3" src="/img/items/{{ $item->image }}" alt="">
                                 </td>

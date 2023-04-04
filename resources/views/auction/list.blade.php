@@ -41,8 +41,8 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $auction->item->name }}</td>
-                                <td>{{ $auction->item->start_price }}</td>
-                                <td>{{ $auction->best_offer }}</td>
+                                <td>@currency($auction->item->start_price)</td>
+                                <td>@currency($auction->best_offer)</td>
                                 <td class="text-center">@if ($auction->status == 'closed')
                                     <i class="fa fa-circle text-danger"></i>
                                 @else
