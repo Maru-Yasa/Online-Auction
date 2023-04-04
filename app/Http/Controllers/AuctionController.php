@@ -70,6 +70,9 @@ class AuctionController extends Controller
 
     public function detail($id)
     {
+        if (!auth()->user()) {
+            return redirect('/login');
+        }
         return view('auction.detail', [
             'data' => Auction::all()->where('id', $id)->first()
         ]);

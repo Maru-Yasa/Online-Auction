@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('item_id')->constrained('items')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('best_offer');
-            $table->enum('status', ['open', 'closed']);
+            $table->enum('status', ['open', 'closed', 'complete']);
             $table->timestamps();
         });
     }

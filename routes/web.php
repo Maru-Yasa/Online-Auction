@@ -13,17 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'App\Http\Controllers\HomeController@welcome')->name('welcome');
+Route::get('/auction/{id}/detail', 'App\Http\Controllers\AuctionController@detail')->name('item_detail');
 
 Route::group(['middleware' => 'auth', 'prefix' => 'home'], function(){
+    Route::get('/', 'App\Http\Controllers\HomeController@view')->name('home');
     Route::group(['middleware' => 'admin'], function(){
         Route::resource('users', 'App\Http\Controllers\UserController');
         Route::resource('logs', 'App\Http\Controllers\LogController');
     });
     Route::group(['middleware' => 'staff'], function(){
-        Route::get('/', 'App\Http\Controllers\HomeController@view')->name('home');
         Route::resource('items', 'App\Http\Controllers\ItemController');
         Route::resource('auctions', 'App\Http\Controllers\AuctionController');
         Route::resource('bids', 'App\Http\Controllers\BidController');
