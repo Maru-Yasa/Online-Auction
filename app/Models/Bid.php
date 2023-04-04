@@ -17,7 +17,7 @@ class Bid extends Model
 
     public function auction()
     {
-        return $this->hasOne(Auction::class, 'id', 'user_id');
+        return $this->hasOne(Auction::class, 'id', 'auction_id');
     }
 
 }

@@ -13,12 +13,14 @@ class UserObserver
      */
     public function created(User $user): void
     {
-        Log::create([
-            'user_id' => auth()->user()->id,
-            'model' => $this->model,
-            'action' => 'create',
-            'text' => 'User '. $user->username .' created'
-        ]);
+        if (auth()->user()) {
+            Log::create([
+                'user_id' => auth()->user()->id,
+                'model' => $this->model,
+                'action' => 'create',
+                'text' => 'User '. $user->username .' created'
+            ]);
+        }
     }
 
     /**
