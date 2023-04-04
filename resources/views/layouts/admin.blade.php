@@ -276,6 +276,13 @@
 								<p>Auctions</p>
 							</a>
 						</li>
+
+						<li class="nav-item @if(Route::is('logs.index')) active @endif">
+							<a href="{{ route('logs.index') }}">
+								<i class="fas fa-table"></i>
+								<p>Logs</p>
+							</a>
+						</li>
 						{{-- 
 						<li class="nav-item @if(Route::is('bids.index')) active @endif">
 							<a href="{{ route('bids.index') }}">

@@ -15,4 +15,9 @@ class Bid extends Model
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
+    public function auction()
+    {
+        return $this->hasOne(Auction::class, 'id', 'user_id');
+    }
+
 }
