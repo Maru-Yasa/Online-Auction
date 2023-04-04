@@ -21,50 +21,50 @@
         <div class="row mt--2">
 
             <div class="col-md-3">
-                <div class="card card-white full-height position-relative">
+                <div class="card card-warning full-height position-relative">
                     <div class="px-3 py-1 border-0" style="bor">
-                        <h1>Users</h1>
+                        <h1><i class="fa fa-users text-white"></i> | Users</h1>
                     </div>
                     <div class="card-body row justify-content-center align-items-center text-center">
-                        <h1 class="mr-3" style="font-size: 50px;z-index: 99;">{{ $users_count }}</h1> 
+                        <h1 class="mr-3" style="font-size: 50px;z-index: 99;">{{ $users_count }}</h1>
                     </div>
-                    <i class="fa fa-users text-warning" style="font-size: 150px; position: absolute; right: 0;bottom: 0;opacity: 0.3;z-index: 1; "></i>
+                    {{-- <i class="fa fa-users text-warning" style="font-size: 150px; position: absolute; right: 0;bottom: 0;opacity: 0.3;z-index: 1; "></i> --}}
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="card card-white full-height position-relative">
+                <div class="card card-success full-height position-relative">
                     <div class="px-3 py-1 border-0" style="bor">
-                        <h1>Items</h1>
+                        <h1><i class="fa fa-boxes text-white"></i> | Items</h1>
                     </div>
                     <div class="card-body row justify-content-center align-items-center text-center">
                         <h1 class="mr-3" style="font-size: 50px;z-index: 99;">{{ $items_count }}</h1> 
                     </div>
-                    <i class="fa fa-boxes text-success" style="font-size: 150px; position: absolute; right: 0;bottom: 0;opacity: 0.3;z-index: 1; "></i>
+                    {{-- <i class="fa fa-boxes text-success" style="font-size: 150px; position: absolute; right: 0;bottom: 0;opacity: 0.3;z-index: 1; "></i> --}}
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="card card-white full-height position-relative">
+                <div class="card card-danger full-height position-relative">
                     <div class="px-3 py-1 border-0" style="bor">
-                        <h1>Auctions</h1>
+                        <h1><i class="fa fa-table text-white"></i> | Auctions</h1>
                     </div>
                     <div class="card-body row justify-content-center align-items-center text-center">
                         <h1 class="mr-3" style="font-size: 50px;z-index: 99;">{{ $auctions_count }}</h1> 
                     </div>
-                    <i class="fa fa-table text-danger" style="font-size: 150px; position: absolute; right: 0;bottom: 0;opacity: 0.3;z-index: 1; "></i>
+                    {{-- <i class="fa fa-table text-danger" style="font-size: 150px; position: absolute; right: 0;bottom: 0;opacity: 0.3;z-index: 1; "></i> --}}
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="card card-white full-height position-relative">
+                <div class="card card-info full-height position-relative">
                     <div class="px-3 py-1 border-0" style="bor">
-                        <h1>Bids</h1>
+                        <h1><i class="fa fa-gavel text-white"></i> | Bids</h1>
                     </div>
                     <div class="card-body row justify-content-center align-items-center text-center">
                         <h1 class="mr-3" style="font-size: 50px;z-index: 99;">{{ $bids_count }}</h1> 
                     </div>
-                    <i class="fa fa-money-bill text-info" style="font-size: 150px; position: absolute; right: 0;bottom: 0;opacity: 0.3;z-index: 1; "></i>
+                    {{-- <i class="fa fa-money-bill text-info" style="font-size: 150px; position: absolute; right: 0;bottom: 0;opacity: 0.3;z-index: 1; "></i> --}}
                 </div>
             </div>
 
@@ -93,16 +93,16 @@
             <div class="col-md-6">
                 <div class="card full-height">
                     <div class="card-body">
-                        <div class="card-title">Total income & spend statistics</div>
+                        <div class="card-title">Total biding offers</div>
                         <div class="row py-3">
                             <div class="col-md-4 d-flex flex-column justify-content-around">
                                 <div>
-                                    <h6 class="fw-bold text-uppercase text-success op-8">Total Income</h6>
-                                    <h3 class="fw-bold">$9.782</h3>
+                                    <h6 class="fw-bold text-uppercase text-warning op-8">Total bid summary</h6>
+                                    <h3 class="fw-bold">@currency($sum_bid)</h3>
                                 </div>
                                 <div>
-                                    <h6 class="fw-bold text-uppercase text-danger op-8">Total Spend</h6>
-                                    <h3 class="fw-bold">$1,248</h3>
+                                    <h6 class="fw-bold text-uppercase text-success op-8">Total tax's income</h6>
+                                    <h3 class="fw-bold">@currency($sum_bid * 10 / 100)</h3>
                                 </div>
                             </div>
                             <div class="col-md-8">

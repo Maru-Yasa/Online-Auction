@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Auction;
+use App\Models\Bid;
+use App\Models\Item;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -16,10 +19,11 @@ class HomeController extends Controller
             ]);
         }
         return view('index', $data=[
-            'auctions_count' => 0,
-            'bids_count' => 0,
-            'items_count' => 0,
-            'users_count' => 0
+            'auctions_count' => Auction::all()->count(),
+            'bids_count' => Bid::all()->count(),
+            'items_count' => Item::all()->count(),
+            'users_count' => User::all()->count(),
+            'sum_bid' => Bid::all()->sum('offer')
         ]);
     }
 
