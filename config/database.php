@@ -2,6 +2,16 @@
 
 use Illuminate\Support\Str;
 
+function detectEnv(){
+    if (env('APP_ENV') == 'local' || env('APP_ENV') == 'staging') {
+        return env('DB_DATABASE');
+    }
+
+    if (env('APP_ENV') == 'production') {
+        return env('DB_DATABASE').'_prod';
+    }
+}
+
 return [
 
     /*
@@ -48,7 +58,7 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
+            'database' => detectEnv(),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
