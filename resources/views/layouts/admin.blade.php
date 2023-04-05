@@ -24,6 +24,7 @@
 <body>
 	<div class="wrapper">
 		<div class="main-header">
+			<x-info></x-info>
 			<!-- Logo Header -->
 			<x-header />
 			<!-- End Logo Header -->

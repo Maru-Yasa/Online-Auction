@@ -23,6 +23,7 @@
 </head>
 <body>
 	<div class="wrapper container-fluid bg-primary">
+		<x-info></x-info>
         @yield('content')		
 	</div>
 	<x-js></x-js>

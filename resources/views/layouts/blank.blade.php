@@ -24,6 +24,7 @@
 </head>
 <body>
 	<div class="wrapper">
+		<x-info></x-info>
         @yield('content')		
 	</div>
 	<x-js></x-js>
