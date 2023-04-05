@@ -27,6 +27,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'home'], function(){
         Route::resource('bids', 'App\Http\Controllers\BidController');
         Route::get('/auction/{auction_id}/confirm_winner', 'App\Http\Controllers\AuctionController@confirm_winner')->name('auctions.confirm_winner');
         Route::get('/auction/{auction_id}/post_confirm_winner', 'App\Http\Controllers\AuctionController@confirm_winner_post')->name('auctions.post_confirm_winner');
+        Route::get('/report', 'App\Http\Controllers\ReportController@index')->name('reports.index');
+        Route::post('/report', 'App\Http\Controllers\ReportController@generate')->name('reports.generate');
+        Route::get('/report-doc', 'App\Http\Controllers\ReportController@doc')->name('reports.doc');
     });
     
     Route::get('/profile', 'App\Http\Controllers\ProfileController@view')->name('profile');

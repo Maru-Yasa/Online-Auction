@@ -292,10 +292,20 @@
 						</li>
 						{{--  --}}
 					@endif
-						{{-- 
-
-						 --}}
-
+					@if (Auth::user()->role === 'admin' || Auth::user()->role === 'staff')
+					<li class="nav-section">
+						<span class="sidebar-mini-icon">
+							<i class="fa fa-ellipsis-h"></i>
+						</span>
+						<h4 class="text-section">Tools</h4>
+					</li>
+					<li class="nav-item @if(Route::is('reports.index')) active @endif">
+						<a href="{{ route('reports.index') }}">
+							<i class="fas fa-file"></i>
+							<p>Reports</p>
+						</a>
+					</li>
+					@endif
 
 						{{-- <li class="nav-section">
 							<span class="sidebar-mini-icon">

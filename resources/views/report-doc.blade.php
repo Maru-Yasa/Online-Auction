@@ -2,9 +2,10 @@
 
 @section('content')
 
-    <div class="row w-100 justify-content-center ">
+    <div class="row w-100 justify-content-center" style="overflow-x: hidden;">
 
-        <h1>Auction's Report</h1>
+        <h1 class="col-12 text-center">Auction's Report</h1>
+        <h4 class="col-12 text-center">{{ $from.' - '.$to }}</h4>
 
         <div class="table-responsive mx-5 px-3">
             <table class="table table table table-striped">
@@ -60,8 +61,10 @@
                         <td class="text-center">
                             @if ($auction->status === 'close')
                                 <i class="fa fa-circle text-danger"></i>
-                            @else
+                            @elseif ($auction->status === 'open')
                                 <i class="fa fa-circle text-success"></i>
+                            @else
+                                <i class="fa fa-trophy text-warning"></i>
                             @endif
                         </td>
                 @endforeach
@@ -69,7 +72,7 @@
             </table>
         </div>
         
-
+        
     </div>
 
 @endsection
