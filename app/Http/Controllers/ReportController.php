@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Auction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -32,7 +33,9 @@ class ReportController extends Controller
             }
             $from = $request->from;
             $to = $request->to;
-            $auction = Auction::all()->whereBetween('created_at', [$from, $to]);
+            $parsedFrom = Carbon::parse($from)->subDays(1);
+            $parsedTo = Carbon::parse($to)->addDays(1);
+            $auction = Auction::all()->whereBetween('created_at', [$parsedFrom, $parsedTo]);
             return response([
                 'status' => true,
                 'message' => 'success',
