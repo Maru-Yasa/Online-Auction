@@ -25,12 +25,16 @@ class HomeController extends Controller
                 'win_history' => $win_history
             ]);
         }
+
+        $best_auction = Auction::orderBy('best_offer', 'DESC')->get();
+
         return view('index', $data=[
             'auctions_count' => Auction::all()->count(),
             'bids_count' => Bid::all()->count(),
             'items_count' => Item::all()->count(),
             'users_count' => User::all()->count(),
-            'sum_bid' => Bid::all()->sum('offer')
+            'sum_bid' => Bid::all()->sum('offer'),
+            'best_auction' => $best_auction
         ]);
     }
 
