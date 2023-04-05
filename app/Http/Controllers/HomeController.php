@@ -7,6 +7,7 @@ use App\Models\Bid;
 use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -33,8 +34,17 @@ class HomeController extends Controller
         ]);
     }
 
-    public function welcome()
+    public function welcome(Request $request)
     {
+        
+        if ($request->query('search')) {
+            $result = DB::table('auctions')->select("*")->join('items', 'auctions.item_id', '=', 'items.id')->where('items.name', 'like', '%'.$request->query('search').'%')->where('status', 'open')->get();
+            old('search', $request->query('search'));
+            return view('welcome', [
+                'data' => Auction::hydrate($result->toArray())
+
+            ]);
+        }
         return view('welcome', [
             'data' => Auction::orderBy('created_at', 'DESC')->get()->where('status', 'open')
         ]);

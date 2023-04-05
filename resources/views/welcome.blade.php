@@ -48,7 +48,10 @@
             </div>
 
             <div class="">
-                <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+                <form class="d-flex" action="" method="get">
+                    <input type="text" name="search" class="form-control rounded" placeholder="Search" value="{{ old('search') }}" aria-label="Username" aria-describedby="basic-addon1">
+                    <button class="btn"><i class="fa fa-search"></i></button>
+                </form>
             </div>
         @endauth
         @guest
@@ -57,7 +60,10 @@
                 Guest
             </div>
             <div class="">
-                <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+                <form class="d-flex" action="" method="get">
+                    <input type="text" name="search" class="form-control rounded" placeholder="Search" value="{{ old('search') }}" aria-label="Username" aria-describedby="basic-addon1">
+                    <button class="btn"><i class="fa fa-search"></i></button>
+                </form>
             </div>
         @endguest
     </div>
