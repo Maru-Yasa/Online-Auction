@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Auction;
+use App\Models\Bid;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -95,5 +97,20 @@ class UserController extends Controller
             $user->delete();
             return redirect()->route('users.index')->with('success', 'Success delete user');
         }
+    }
+
+    public function detail($user_id)
+    {
+
+        $bids_history = Bid::orderBy('created_at', 'DESC')->where('user_id', $user_id)->get();
+        $win_history = Auction::all()->where('winner', $user_id);
+        return view('index-client', $data=[
+            'user' => User::all()->where('id', $user_id)->first(),
+            'message' => 'test',
+            'total_bid' => Bid::all()->where('user_id', $user_id)->count(),
+            'spent' => Bid::all()->where('user_id', $user_id)->sum('offer'),
+            'bids_history' => $bids_history,
+            'win_history' => $win_history
+        ]);
     }
 }

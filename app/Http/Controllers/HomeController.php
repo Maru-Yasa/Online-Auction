@@ -26,15 +26,26 @@ class HomeController extends Controller
             ]);
         }
 
-        $best_auction = Auction::orderBy('best_offer', 'DESC')->get();
-
+        $best_auction = Auction::orderBy('best_offer', 'DESC')->limit(5)->get();
+        $allBid = Bid::all();
+        $userGroup = [];
+        for ($i=0; $i < count($allBid); $i++) { 
+            $userGroup[$allBid[$i]->user->id][] = $allBid[$i];
+        }
+        arsort($userGroup);
+        array_slice($userGroup, 0, 5);
+        $best_user = [];
+        foreach ($userGroup as $key => $value) {
+            $best_user[] = User::all()->where('id', $key)->first();
+        }
         return view('index', $data=[
             'auctions_count' => Auction::all()->count(),
             'bids_count' => Bid::all()->count(),
             'items_count' => Item::all()->count(),
             'users_count' => User::all()->count(),
             'sum_bid' => Bid::all()->sum('offer'),
-            'best_auction' => $best_auction
+            'best_auction' => $best_auction,
+            'best_user' => $best_user
         ]);
     }
 
