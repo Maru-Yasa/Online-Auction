@@ -37,10 +37,18 @@ To install the Online Auction Application (dev), follow these steps:
 
 To use the Online Auction Application, follow these steps:
 
+### For client
 1.  Register for an account or log in
 2.  Create an auction or bid on an existing auction
-3.  Communicate with the other party through the messaging system
-4.  Complete the transaction using the integrated payment system
+3.  Wait till admin closed the auction
+4.  Check on your dashboard page if you won or not
+
+### For staff/admin
+1.  Log in
+2.  Create an auction
+3.  Close or open auction
+4.  Complete the auction
+5.  Calls client who won
 
 ## Technologies Used
 
