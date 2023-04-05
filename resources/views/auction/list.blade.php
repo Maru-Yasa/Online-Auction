@@ -34,6 +34,7 @@
                             <td>Best Offer By</td>
                             <td>Bids Count</td>
                             <td class="text-center">Status</td>
+                            <td class="">Created at</td>
                             <td class="text-center">Action</td>
                         </tr>
                     </thead>
@@ -59,6 +60,7 @@
                                     <i class="fa fa-trophy text-warning"></i>
                                 @endif
                                 </td>
+                                <td>{{ $auction->created_at }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center">
                                         @if ($auction->status != 'complete')
