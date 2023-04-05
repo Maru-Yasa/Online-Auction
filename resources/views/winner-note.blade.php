@@ -41,7 +41,11 @@
                   @if ($auction->status != 'complete')
                     <a href="{{ route('auctions.post_confirm_winner', $auction->id) }}" class="btn btn-primary d-block text-white">Confirm Winner</a>                      
                   @endif
-                  <a class="btn d-block text-primary" href="{{ route('auctions.index') }}">Back</a>
+                  @if (auth()->user()->role == 'client')
+                  <a class="btn d-block text-primary" href="{{ route('home') }}">Back</a>                      
+                  @else
+                  <a class="btn d-block text-primary" href="{{ route('auctions.index') }}">Back</a>                      
+                  @endif
                 </div>
               </div>
             </div>
