@@ -98,8 +98,8 @@
                         <h1 class="fw-bold">{{ $auction->item->name }}</h1>
 
                         <div class="row px-3">
-                            <div class="d-flex flex-md-row flex-column col-12 justify-content-between p-0">
-                                <div class="">
+                            <div class="row p-0">
+                                <div class="col">
                                     <label for="">Start Price</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
@@ -109,7 +109,7 @@
                                     </div>
                                 </div>
     
-                                <div class="">
+                                <div class="col">
                                     <label for="">Best Offer</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
