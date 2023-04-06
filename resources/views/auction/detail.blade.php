@@ -95,7 +95,8 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-money-bill-wave text-success"></i></span>
                                 </div>
-                                <input type="number" name="offer" placeholder="place bid here" class="form-control" value="@currency($data->best_offer)" aria-describedby="basic-addon1">
+                                <input oninput="newBidInput(this)" type="text" name="" placeholder="place bid here" class="form-control" value="" aria-describedby="basic-addon1">
+                                <input id="offer_input" type="number" name="offer" value="0" hidden>
                             </div>  
                         </div>
                         <button type="submit" @if(Auth::user()->role != 'client') disabled @endif class="btn btn-primary mt-auto">Place bid</button>                        
@@ -114,10 +115,25 @@
         var auction_id = $('#auction_id').val()
 
         const rupiah = (number)=>{
-            return new Intl.NumberFormat("id-ID", {
-            style: "currency",
-            currency: "IDR"
+
+            if ((number | 0) < number) {
+                return Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR'
+                }).format(number)
+            }
+            return Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                maximumFractionDigits: 0
             }).format(number);
+        }
+
+        function newBidInput(e) {
+            var n = parseInt(e.value.replace(/\D/g,''),10);
+            let parsedValue = rupiah(n)
+            $("#offer_input").val(parseInt(n))
+            e.value = parsedValue
         }
 
 
