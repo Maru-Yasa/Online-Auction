@@ -47,7 +47,9 @@
                                 <td>@currency($auction->item->start_price)</td>
                                 <td>@currency($auction->best_offer)</td>
                                 <td>@if ($auction->bids->count() !== 0)
-                                    <a href="{{ route('users.detail',$auction->bids->where('offer', $auction->best_offer)->first()->user->id ) }}">{{ $auction->bids->where('offer', $auction->best_offer)->first()->user->username }}</a>
+                                    @if ($auction->bids->where('offer', $auction->best_offer)->first())
+                                        <a href="{{ route('users.detail',$auction->bids->where('offer', $auction->best_offer)->first()->user->id ) }}">{{ $auction->bids->where('offer', $auction->best_offer)->first()->user->username }}</a>                                        
+                                    @endif
                                 @else
                                     Unknown
                                 @endif</td>

@@ -111,9 +111,9 @@ class ItemController extends Controller
         $auction = Auction::all()->where('item_id', $item->id)->first();
         if ($auction->status === 'closed') {
             $item->update($data);
-            $auction->update([
-                'best_offer' => $item->start_price,
-            ]);
+            // $auction->update([
+            //     'best_offer' => $item->start_price,
+            // ]);
         }else{
             return redirect()->route('items.index')->with('error', "Can't edit item while auction open");
         }
