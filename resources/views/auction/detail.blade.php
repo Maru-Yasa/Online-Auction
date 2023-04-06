@@ -130,6 +130,12 @@
         }
 
         function newBidInput(e) {
+            console.log(e.value);
+            if (e.value == 'RpNa' || e.value == 'Rp') {
+                let parsedValue = rupiah(0)
+                $("#offer_input").val(parseInt(0))
+                e.value = parsedValue
+            }
             var n = parseInt(e.value.replace(/\D/g,''),10);
             let parsedValue = rupiah(n)
             $("#offer_input").val(parseInt(n))
